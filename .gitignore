@@ -1,0 +1,6 @@
+node_modules/
+whatsapp-backend/node_modules/
+whatsapp-backend/.env
+backups/
+.vercel/
+*.log
