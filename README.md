@@ -1,16 +1,16 @@
-# RockyRAM
+# RockyEDU
 
 Plataforma de gestion operativa y administrativa para el seguimiento de servicios, personal y novedades.
 
 ## Estado actual
-- Clon desacoplado de `RockyEducacion`.
-- Renombrado para `RockyRAM`.
-- Sin repositorio Git activo en esta copia local; la reconexion a GitHub debe hacerse contra una cuenta nueva.
-- Credenciales heredadas de Supabase y WhatsApp retiradas de los archivos tracked.
+- Frontend desplegado en Vercel.
+- Autenticacion y datos operando con Supabase/PostgreSQL.
+- Backend de WhatsApp desplegado en Vercel.
 
 ## Flujo de acceso
-- Entrada principal: `index.html`
-- Redireccion al ingreso: `app.html#/login`
+- Entrada principal del proyecto: `index.html`
+- Ingreso administrativo: `app.html#/login`
+- Portal separado para empleados: `employee.html`
 
 ## Modulos principales
 - Login
@@ -20,15 +20,14 @@ Plataforma de gestion operativa y administrativa para el seguimiento de servicio
 - Consultas y reportes
 
 ## Supabase
-- Configuracion del frontend en `src/assets/js/config.js`
+- Configuracion activa del frontend en `src/assets/js/config.js`
 - Cliente principal de datos en `src/assets/js/supabase.js`
 - Scripts SQL de migracion en `supabase/`
-- Completar `SUPABASE_URL` y `SUPABASE_ANON_KEY` con la cuenta nueva antes de volver a ejecutar la app.
 
 ## Backend WhatsApp
 - Backend actual en `whatsapp-backend/`
 - Guia de migracion y despliegue en `WHATSAPP_BACKEND_MIGRATION.md`
-- Configurar nuevos secretos en `whatsapp-backend/.env` y en Vercel usando `whatsapp-backend/.env.example` como plantilla.
+- Configurar nuevos secretos en `whatsapp-backend/.env` y en Vercel.
 
 ## Rutas de la app
 - `#/login`
@@ -50,10 +49,25 @@ Plataforma de gestion operativa y administrativa para el seguimiento de servicio
 - `#/reports`
 - `#/upload`
 
+## Portal de empleados
+- Acceso dedicado: `employee.html`
+- No usa registro en `Auth`.
+- Valida `documento + ultimos 4 del celular` contra `employees`.
+- Si el empleado tiene un perfil activo con rol superior (`supervisor`, `admin`, etc.), se redirige al portal principal.
+- El backend de este portal vive en `whatsapp-backend/src/app.js`.
+- Requiere variables backend en `whatsapp-backend`:
+  - `SUPABASE_URL`
+  - `SUPABASE_SERVICE_ROLE_KEY`
+  - `EMPLOYEE_PORTAL_ALLOWED_ORIGINS`
+  - `EMPLOYEE_PORTAL_SESSION_HOURS`
+- El frontend usa `EMPLOYEE_PORTAL_API_BASE` en `src/assets/js/config.js` para apuntar al backend cuando esta en otro dominio.
+- Requiere aplicar la migracion `supabase/schema_operations_phase14_employee_portal.sql`.
+
 ## Ejecucion local
-1. Abrir `app.html` con Live Server, o `index.html` si quieres usar la redireccion automatica.
-2. Entrar a la app desde `app.html#/login`.
-3. Iniciar sesion y validar modulos segun rol/permisos.
+1. Abrir `index.html` con Live Server.
+2. Entrar al centro de accesos desde `access.html`.
+3. Elegir `Administrativo` o `Empleados` segun el perfil.
+4. Para probar `employee.html`, configurar `EMPLOYEE_PORTAL_API_BASE` hacia el dominio del backend `whatsapp-backend` que expone `/api/employee-*`; Live Server por si solo no sirve esas funciones.
 
 ## Documentacion operativa
 - Supabase: `SUPABASE_SETUP.md`
