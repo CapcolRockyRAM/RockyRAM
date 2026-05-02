@@ -17,12 +17,12 @@ export const Contact = (mount) => {
         ]
       ),
       contactCard(
-        'Cliente final',
+        'SERVICIOS INTEGRALES S.I. S.A.S.',
         [
-          ['Pagina web', 'www.tudominio.com', 'https://www.tudominio.com'],
-          ['Direccion', 'Direccion de tu empresa'],
-          ['Telefono', 'Telefono de tu empresa'],
-          ['Correo', 'tucorreo@tudominio.com', 'mailto:tucorreo@tudominio.com']
+          ['Pagina web', 'www.serviciosintegralessi.com/', 'https://serviciosintegralessi.com/'],
+          ['Direccion', 'Calle 34A # 77-10 - Medellín'],
+          ['Telefono', '313 697 2266  -  311 711 490'],
+          ['Correo', 'serintegralesltda@hotmail.com', 'mailto:serintegralesltda@hotmail.com']
         ]
       )
     ])
