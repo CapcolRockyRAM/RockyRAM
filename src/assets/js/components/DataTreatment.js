@@ -15,10 +15,10 @@ export const DataTreatment = (mount) => {
         el('p', { className: 'policy-doc__text' }, [
           'Politica oficial de tratamiento de datos del responsable: ',
           el('a', {
-            href: '#',
+            href: 'https://serviciosintegralessi.com/politica-privacidad/',
             target: '_blank',
             rel: 'noopener noreferrer'
-          }, ['Link tratamiento de datos de tu empresa'])
+          }, ['Link tratamiento de datos'])
         ]),
 
         el('h3', { className: 'policy-doc__section-title' }, ['2. Ambito de Aplicacion']),
