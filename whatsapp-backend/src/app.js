@@ -665,7 +665,7 @@ function sendCertificateVerificationHtml(res, statusCode, row, customMessage = '
   const ok = statusCode === 200 && row;
   const title = ok ? 'Certificado valido' : 'Certificado no encontrado';
   const message = customMessage || (ok
-    ? 'Este certificado fue emitido por Rocky y existe en el registro de auditoria.'
+    ? 'Este certificado fue emitido por Servicios Integrales S.I. S.A.S. a través de Rocky.'
     : 'No encontramos un certificado emitido con este codigo de verificacion.');
   const typeLabel = row?.certificate_type === 'with_salary' ? 'Laboral con salario' : 'Laboral basico';
   const channelLabel = row?.channel === 'employee_portal' ? 'Portal de empleados' : 'Administrativo';
